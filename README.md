@@ -1,6 +1,4 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Small react app that displays a search query as a result from search from a food API
 
 ## Available Scripts
 
