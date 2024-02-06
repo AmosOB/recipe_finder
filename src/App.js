@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import './App.css';
+import Recipe from './Recipe';
+import Searchrecipe from './Searchrecipe';
 
 function App() {
   const APP_ID ='cc60905e';
@@ -17,7 +19,7 @@ function App() {
         &app_id=${APP_ID}&app_key=${APP_KEY}` 
       );
       setRecipes(response.data.hits);
-      console.log(response.data.hits);
+      // console.log(response.data.hits);
     } catch (error) {
       console.log(error);
     }
@@ -42,31 +44,14 @@ function App() {
         <div className='row justify-content-center'>
           <div className='col-sm-12'>
             <h2 className='text-center'>Recipe Finder</h2>
-            <form onSubmit={ getSearchQuery }>
-              <div className="d-flex mb-3">
-                <input type="text"
-                className="form-control"
-                  placeholder="Search"
-                  value={ search_query }
-                  onChange={ updateSearchQuery  }
-                />
-                <button className="btn btn-primary mx-2"
-                type="submit"
-                >Search
-                </button>
-
-              </div>
-            </form>
-            <div className='row justify-content-center'>
-              {recipes.map((recipe, index) => 
-                <div className='col-sm-4 text-center mb-3' key={index}>
-                  <img src={recipe.recipe.image}/>
-                  <h4>{recipe.recipe.label}</h4>
-                  <h6>{recipe.recipe.cuisineType[0]}</h6>
-                  <p>{recipe.recipe.ingredientLines}</p>
-                </div>
-              )}
-            </div>
+            <Searchrecipe
+              getSearchQuery = { getSearchQuery }
+              search_query = { search_query }
+              updateSearchQuery = { updateSearchQuery }
+            />
+            <Recipe
+              recipes = { recipes }
+            />
           </div>
         </div>
       </div>
